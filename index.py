@@ -24,9 +24,9 @@ ONE, TWO, THREE, FOUR = range(4)
 # End
 END = range(1)
 # Handlers das linguagens
-JS, FUNCAO_JS, CONTROLE_JS = range(3)
-PYTHON, FUNCAO_PYTHON, CONTROLE_PYTHON = range(3)
-JAVA, FUNCAO_JAVA, CONTROLE_JAVA = range(3)
+JS, FUNCAO_JS, CONTROLE_JS, ARRAYS_JS, OPER_EXP_JS = range(5)
+PYTHON, FUNCAO_PYTHON, CONTROLE_PYTHON, ARRAYS_PYTHON, OPER_EXP_PYTHON = range(5)
+JAVA, FUNCAO_JAVA, CONTROLE_JAVA, ARRAYS_JAVA, OPER_EXP_JAVA = range(5)
 
 # Função de incio do bot
 def start(update: Update, _: CallbackContext) -> None:
@@ -61,6 +61,12 @@ def javascript(update: Update, _: CallbackContext) -> int:
             InlineKeyboardButton("Funções", callback_data=str(FUNCAO_JS)),
         ],
         [
+            InlineKeyboardButton("Arrays", callback_data=str(ARRAYS_JS))
+        ],
+        [
+            InlineKeyboardButton("Operadores e Expressões", callback_data=str(OPER_EXP_JS))
+        ],
+        [
             InlineKeyboardButton("Estruturas de Controle (IF/ELSE/FOR/WHILE/SWITCH)", callback_data=str(CONTROLE_JS))
         ],    
     ]
@@ -79,6 +85,12 @@ def java(update: Update, _: CallbackContext) -> int:
     keyboard = [
         [
             InlineKeyboardButton("Funções", callback_data=str(FUNCAO_JAVA)),
+        ],
+        [
+            InlineKeyboardButton("Arrays", callback_data=str(ARRAYS_JAVA))
+        ],
+        [
+            InlineKeyboardButton("Operadores e Expressões", callback_data=str(OPER_EXP_JAVA))
         ],
         [
             InlineKeyboardButton("Estruturas de Controle (IF/ELSE/FOR/WHILE/SWITCH)", callback_data=str(CONTROLE_JAVA))
@@ -101,6 +113,12 @@ def python(update: Update, _: CallbackContext) -> int:
             InlineKeyboardButton("Funções", callback_data=str(FUNCAO_PYTHON)),
         ],
         [
+            InlineKeyboardButton("Arrays", callback_data=str(ARRAYS_PYTHON)),
+        ],
+        [
+            InlineKeyboardButton("Operadores e Expressões", callback_data=str(OPER_EXP_PYTHON))
+        ],
+        [
             InlineKeyboardButton("Estruturas de Controle (IF/ELSE/FOR/WHILE/SWITCH)", callback_data=str(CONTROLE_PYTHON)),
         ],
     ]
@@ -111,7 +129,7 @@ def python(update: Update, _: CallbackContext) -> int:
     return FOURTH
 
 
-# Referente a funcoes do JavaScript
+# Funcoes no javascript
 def func_js(update: Update, _: CallbackContext) -> int:
     """Prompt same text & keyboard as `start` does but not as new message"""
     query = update.callback_query
@@ -130,7 +148,7 @@ def func_js(update: Update, _: CallbackContext) -> int:
     return END
 
 
-# Referente a funcoes do Java
+# Funcoes no java
 def func_java(update: Update, _: CallbackContext) -> int:
     """Prompt same text & keyboard as `start` does but not as new message"""
     query = update.callback_query
@@ -149,7 +167,7 @@ def func_java(update: Update, _: CallbackContext) -> int:
     return END
 
 
-# Referente a funcoes do python
+# Funcoes no python
 def func_python(update: Update, _: CallbackContext) -> int:
     """Prompt same text & keyboard as `start` does but not as new message"""
     query = update.callback_query
@@ -168,7 +186,126 @@ def func_python(update: Update, _: CallbackContext) -> int:
     return END
 
 
-# Referente ao IF/ELSE do JavaScript
+
+# Arrays no javascript
+def array_js(update: Update, _: CallbackContext) -> int:
+    """Prompt same text & keyboard as `start` does but not as new message"""
+    query = update.callback_query
+    query.answer()
+    keyboard = [
+        [
+            InlineKeyboardButton("Arrays", url="https://api.telegram.org"),
+            InlineKeyboardButton("Manipulando arrays", url="https://api.telegram.org"),
+        ],
+        [
+            InlineKeyboardButton("DOC JavaScript", url="https://api.telegram.org"),
+        ],
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    query.edit_message_text(text="Arrays em JavaScript. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
+    return END
+
+
+# Arrays no java
+def array_java(update: Update, _: CallbackContext) -> int:
+    """Prompt same text & keyboard as `start` does but not as new message"""
+    query = update.callback_query
+    query.answer()
+    keyboard = [
+        [
+            InlineKeyboardButton("Arrays", url="https://api.telegram.org"),
+            InlineKeyboardButton("Manipulando arrays", url="https://api.telegram.org"),
+        ],
+        [
+            InlineKeyboardButton("DOC Java", url="https://api.telegram.org"),
+        ],
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    query.edit_message_text(text="Arrays em Java. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
+    return END
+
+
+# Arrays no python
+def array_python(update: Update, _: CallbackContext) -> int:
+    """Prompt same text & keyboard as `start` does but not as new message"""
+    query = update.callback_query
+    query.answer()
+    keyboard = [
+        [
+            InlineKeyboardButton("Arrays", url="https://api.telegram.org"),
+            InlineKeyboardButton("Dicionarios", url="https://api.telegram.org"),
+            InlineKeyboardButton("Tuplas", url="https://api.telegram.org"),
+        ],
+        [
+            InlineKeyboardButton("DOC Python", url="https://api.telegram.org"),
+        ],
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    query.edit_message_text(text="Arrays em Python. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
+    return END
+
+
+# Operadores e Expressoes no javascript
+def oper_exp_js(update: Update, _: CallbackContext) -> int:
+    """Prompt same text & keyboard as `start` does but not as new message"""
+    query = update.callback_query
+    query.answer()
+    keyboard = [
+        [
+            InlineKeyboardButton("Operadores Logicos", url="https://api.telegram.org"),
+            InlineKeyboardButton("Expressoes", url="https://api.telegram.org"),
+            InlineKeyboardButton("Mais coisas", url="https://api.telegram.org"),
+        ],
+        [
+            InlineKeyboardButton("DOC JavaScript", url="https://api.telegram.org"),
+        ],
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    query.edit_message_text(text="Operadores e Expressões em JavaScript. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
+    return END
+
+
+# Operadores e Expressoes no java
+def oper_exp_java(update: Update, _: CallbackContext) -> int:
+    """Prompt same text & keyboard as `start` does but not as new message"""
+    query = update.callback_query
+    query.answer()
+    keyboard = [
+        [
+            InlineKeyboardButton("Operadores Logicos", url="https://api.telegram.org"),
+            InlineKeyboardButton("Expressoes", url="https://api.telegram.org"),
+            InlineKeyboardButton("Mais coisas", url="https://api.telegram.org"),
+        ],
+        [
+            InlineKeyboardButton("DOC Java", url="https://api.telegram.org"),
+        ],
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    query.edit_message_text(text="Operadores e Expressões em Java. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
+    return END
+
+
+# Operadores e Expressoes no python
+def oper_exp_python(update: Update, _: CallbackContext) -> int:
+    """Prompt same text & keyboard as `start` does but not as new message"""
+    query = update.callback_query
+    query.answer()
+    keyboard = [
+        [
+            InlineKeyboardButton("Operadores Logicos", url="https://api.telegram.org"),
+            InlineKeyboardButton("Expressoes", url="https://api.telegram.org"),
+            InlineKeyboardButton("Mais coisas", url="https://api.telegram.org"),
+        ],
+        [
+            InlineKeyboardButton("DOC Python", url="https://api.telegram.org"),
+        ],
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    query.edit_message_text(text="Operadores e Expressões em Python. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
+    return END
+
+
+# Estrutura de controle javascript
 def est_controle_js(update: Update, _: CallbackContext) -> int:
     """Prompt same text & keyboard as `start` does but not as new message"""
     query = update.callback_query
@@ -191,7 +328,7 @@ def est_controle_js(update: Update, _: CallbackContext) -> int:
     return END
 
 
-# Referente ao IF/ELSE do Java
+# Estrutura de controle java
 def est_controle_java(update: Update, _: CallbackContext) -> int:
     """Prompt same text & keyboard as `start` does but not as new message"""
     query = update.callback_query
@@ -214,7 +351,7 @@ def est_controle_java(update: Update, _: CallbackContext) -> int:
     return END
 
 
-# Referente ao IF/ELSE do Python
+# Estrutura de controle python
 def est_controle_python(update: Update, _: CallbackContext) -> int:
     """Prompt same text & keyboard as `start` does but not as new message"""
     query = update.callback_query
@@ -268,14 +405,20 @@ def main() -> None:
             SECOND: [
                 CallbackQueryHandler(func_js, pattern='^' + str(FUNCAO_JS) + '$'),
                 CallbackQueryHandler(est_controle_js, pattern='^' + str(CONTROLE_JS) + '$'),
+                CallbackQueryHandler(array_js, pattern='^' + str(ARRAYS_JS) + '$'),
+                CallbackQueryHandler(oper_exp_js, pattern='^' + str(OPER_EXP_JS) + '$'),
             ],
             THIRD: [
                 CallbackQueryHandler(func_java, pattern='^' + str(FUNCAO_JAVA) + '$'),                
                 CallbackQueryHandler(est_controle_java, pattern='^' + str(CONTROLE_JAVA) + '$'),
+                CallbackQueryHandler(array_java, pattern='^' + str(ARRAYS_JAVA) + '$'),
+                CallbackQueryHandler(oper_exp_java, pattern='^' + str(OPER_EXP_JAVA) + '$'),
             ],
             FOURTH: [
                 CallbackQueryHandler(func_python, pattern='^' + str(FUNCAO_PYTHON) + '$'),
                 CallbackQueryHandler(est_controle_python, pattern='^' + str(CONTROLE_PYTHON) + '$'),
+                CallbackQueryHandler(array_python, pattern='^' + str(ARRAYS_PYTHON) + '$'),
+                CallbackQueryHandler(oper_exp_python, pattern='^' + str(OPER_EXP_PYTHON) + '$'),
             ],
             END: [
                 CallbackQueryHandler(end, pattern='^' + str() + '$'),
