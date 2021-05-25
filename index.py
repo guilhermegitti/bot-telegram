@@ -18,15 +18,15 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Stages
-FIRST, SECOND, THIRD, FOURTH = range(4)
+FIRST, SECOND, THIRD, FOURTH, FIFTH, SIXTH, SEVENTH = range(7)
 # Callback data
-ONE, TWO, THREE, FOUR = range(4)
+ONE, TWO, THREE, FOUR, FIVE, = range(5)
 # End
 END = range(1)
 # Handlers das linguagens
-JS, FUNCAO_JS, CONTROLE_JS, ARRAYS_JS, OPER_EXP_JS = range(5)
-PYTHON, FUNCAO_PYTHON, CONTROLE_PYTHON, ARRAYS_PYTHON, OPER_EXP_PYTHON = range(5)
-JAVA, FUNCAO_JAVA, CONTROLE_JAVA, ARRAYS_JAVA, OPER_EXP_JAVA = range(5)
+JS, FUNCAO_JS, CONTROLE_JS, ARRAYS_JS, OPER_EXP_JS, VOLTA_JS = range(6)
+PYTHON, FUNCAO_PYTHON, CONTROLE_PYTHON, ARRAYS_PYTHON, OPER_EXP_PYTHON, VOLTA_JAVA = range(6)
+JAVA, FUNCAO_JAVA, CONTROLE_JAVA, ARRAYS_JAVA, OPER_EXP_JAVA, VOLTA_PYTHON = range(6)
 
 # Função de incio do bot
 def start(update: Update, _: CallbackContext) -> None:
@@ -51,6 +51,7 @@ def linguagens(update: Update, _: CallbackContext) -> int:
     update.message.reply_text("Escolha a Linguagem relacionada a sua duvida:", reply_markup=reply_markup)
     return FIRST
 
+
 # Escolhas do JavaScript
 def javascript(update: Update, _: CallbackContext) -> int:
     """Show new choice of buttons"""
@@ -68,7 +69,10 @@ def javascript(update: Update, _: CallbackContext) -> int:
         ],
         [
             InlineKeyboardButton("Estruturas de Controle (IF/ELSE/FOR/WHILE/SWITCH)", callback_data=str(CONTROLE_JS))
-        ],    
+        ],
+        [
+            InlineKeyboardButton("Voltar", callback_data=str(FIVE))
+        ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(
@@ -94,7 +98,10 @@ def java(update: Update, _: CallbackContext) -> int:
         ],
         [
             InlineKeyboardButton("Estruturas de Controle (IF/ELSE/FOR/WHILE/SWITCH)", callback_data=str(CONTROLE_JAVA))
-        ],    
+        ],
+        [
+            InlineKeyboardButton("Voltar", callback_data=str(FIVE))
+        ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(
@@ -121,12 +128,37 @@ def python(update: Update, _: CallbackContext) -> int:
         [
             InlineKeyboardButton("Estruturas de Controle (IF/ELSE/FOR/WHILE/SWITCH)", callback_data=str(CONTROLE_PYTHON)),
         ],
+        [
+            InlineKeyboardButton("Voltar", callback_data=str(FIVE))
+        ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(
         text="Python selecionado. Em qual dessas partes da linguagem está a duvida?", reply_markup=reply_markup
     )
     return FOURTH
+
+
+# Opções de linguagens
+def return_linguagens(update: Update, _: CallbackContext) -> int:
+    """Send message on `/start`."""
+    query = update.callback_query
+    query.answer()
+    keyboard = [
+        [
+            InlineKeyboardButton("JavaScript", callback_data=str(ONE)),
+            InlineKeyboardButton("Java", callback_data=str(TWO))
+        ],
+        [
+            InlineKeyboardButton("Python", callback_data=str(THREE)),
+        ]
+    ]
+
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    query.edit_message_text(
+        text="Escolha a Linguagem relacionada a sua duvida:", reply_markup=reply_markup
+    )
+    return FIRST
 
 
 # Funcoes no javascript
@@ -141,11 +173,12 @@ def func_js(update: Update, _: CallbackContext) -> int:
         ],
         [
             InlineKeyboardButton("DOC JavaScript", url="https://api.telegram.org"),
+            InlineKeyboardButton("Voltar", callback_data=str(VOLTA_JS))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(text="Funções em JavaScript. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
-    return END
+    return FIFTH
 
 
 # Funcoes no java
@@ -160,11 +193,12 @@ def func_java(update: Update, _: CallbackContext) -> int:
         ],
         [
             InlineKeyboardButton("DOC Java", url="https://api.telegram.org"),
+            InlineKeyboardButton("Voltar", callback_data=str(VOLTA_JAVA))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(text="Funções em Java. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
-    return END
+    return SIXTH
 
 
 # Funcoes no python
@@ -179,11 +213,12 @@ def func_python(update: Update, _: CallbackContext) -> int:
         ],
         [
             InlineKeyboardButton("DOC Python", url="https://api.telegram.org"),
+            InlineKeyboardButton("Voltar", callback_data=str(VOLTA_PYTHON))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(text="Funções em Python. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
-    return END
+    return SEVENTH
 
 
 
@@ -199,11 +234,12 @@ def array_js(update: Update, _: CallbackContext) -> int:
         ],
         [
             InlineKeyboardButton("DOC JavaScript", url="https://api.telegram.org"),
+            InlineKeyboardButton("Voltar", callback_data=str(VOLTA_JS))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(text="Arrays em JavaScript. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
-    return END
+    return FIFTH
 
 
 # Arrays no java
@@ -218,11 +254,12 @@ def array_java(update: Update, _: CallbackContext) -> int:
         ],
         [
             InlineKeyboardButton("DOC Java", url="https://api.telegram.org"),
+            InlineKeyboardButton("Voltar", callback_data=str(VOLTA_JAVA))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(text="Arrays em Java. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
-    return END
+    return SIXTH
 
 
 # Arrays no python
@@ -238,11 +275,12 @@ def array_python(update: Update, _: CallbackContext) -> int:
         ],
         [
             InlineKeyboardButton("DOC Python", url="https://api.telegram.org"),
+            InlineKeyboardButton("Voltar", callback_data=str(VOLTA_PYTHON))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(text="Arrays em Python. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
-    return END
+    return SEVENTH
 
 
 # Operadores e Expressoes no javascript
@@ -253,16 +291,17 @@ def oper_exp_js(update: Update, _: CallbackContext) -> int:
     keyboard = [
         [
             InlineKeyboardButton("Operadores Logicos", url="https://api.telegram.org"),
-            InlineKeyboardButton("Expressoes", url="https://api.telegram.org"),
-            InlineKeyboardButton("Mais coisas", url="https://api.telegram.org"),
+            InlineKeyboardButton("Expressoes", url="https://api.telegram.org")
         ],
         [
+            InlineKeyboardButton("Mais coisas", url="https://api.telegram.org"),
             InlineKeyboardButton("DOC JavaScript", url="https://api.telegram.org"),
+            InlineKeyboardButton("Voltar", callback_data=str(VOLTA_JS))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(text="Operadores e Expressões em JavaScript. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
-    return END
+    return FIFTH
 
 
 # Operadores e Expressoes no java
@@ -273,16 +312,17 @@ def oper_exp_java(update: Update, _: CallbackContext) -> int:
     keyboard = [
         [
             InlineKeyboardButton("Operadores Logicos", url="https://api.telegram.org"),
-            InlineKeyboardButton("Expressoes", url="https://api.telegram.org"),
-            InlineKeyboardButton("Mais coisas", url="https://api.telegram.org"),
+            InlineKeyboardButton("Expressoes", url="https://api.telegram.org")
         ],
         [
+            InlineKeyboardButton("Mais coisas", url="https://api.telegram.org"),
             InlineKeyboardButton("DOC Java", url="https://api.telegram.org"),
+            InlineKeyboardButton("Voltar", callback_data=str(VOLTA_JAVA))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(text="Operadores e Expressões em Java. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
-    return END
+    return SIXTH
 
 
 # Operadores e Expressoes no python
@@ -293,16 +333,17 @@ def oper_exp_python(update: Update, _: CallbackContext) -> int:
     keyboard = [
         [
             InlineKeyboardButton("Operadores Logicos", url="https://api.telegram.org"),
-            InlineKeyboardButton("Expressoes", url="https://api.telegram.org"),
-            InlineKeyboardButton("Mais coisas", url="https://api.telegram.org"),
+            InlineKeyboardButton("Expressoes", url="https://api.telegram.org")
         ],
         [
+            InlineKeyboardButton("Mais coisas", url="https://api.telegram.org"),
             InlineKeyboardButton("DOC Python", url="https://api.telegram.org"),
+            InlineKeyboardButton("Voltar", callback_data=str(VOLTA_PYTHON))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(text="Operadores e Expressões em Python. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
-    return END
+    return SEVENTH
 
 
 # Estrutura de controle javascript
@@ -321,11 +362,12 @@ def est_controle_js(update: Update, _: CallbackContext) -> int:
         ],
         [
             InlineKeyboardButton("DOC JavaScript", url="https://api.telegram.org"),
+            InlineKeyboardButton("Voltar", callback_data=str(VOLTA_JS))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(text="Estruturas de Controle do JavaScript. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
-    return END
+    return FIFTH
 
 
 # Estrutura de controle java
@@ -344,11 +386,12 @@ def est_controle_java(update: Update, _: CallbackContext) -> int:
         ],
         [
             InlineKeyboardButton("DOC Java", url="https://api.telegram.org"),
+            InlineKeyboardButton("Voltar", callback_data=str(VOLTA_JAVA))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(text="Estruturas de Controle do Java. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
-    return END
+    return SIXTH
 
 
 # Estrutura de controle python
@@ -367,11 +410,100 @@ def est_controle_python(update: Update, _: CallbackContext) -> int:
         ],
         [
             InlineKeyboardButton("DOC Python", url="https://api.telegram.org"),
+            InlineKeyboardButton("Voltar", callback_data=str(VOLTA_PYTHON))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(text="Estruturas de Controle do Python. Escolha o tópico da sua duvida e clique para ver um exemplo, ou se prefir, veja a documentação.", reply_markup=reply_markup)
-    return END
+    return SEVENTH
+
+
+# Escolhas do JavaScript
+def return_js(update: Update, _: CallbackContext) -> int:
+    """Show new choice of buttons"""
+    query = update.callback_query
+    query.answer()
+    keyboard = [
+        [
+            InlineKeyboardButton("Funções", callback_data=str(FUNCAO_JS)),
+        ],
+        [
+            InlineKeyboardButton("Arrays", callback_data=str(ARRAYS_JS))
+        ],
+        [
+            InlineKeyboardButton("Operadores e Expressões", callback_data=str(OPER_EXP_JS))
+        ],
+        [
+            InlineKeyboardButton("Estruturas de Controle (IF/ELSE/FOR/WHILE/SWITCH)", callback_data=str(CONTROLE_JS))
+        ],
+        [
+            InlineKeyboardButton("Voltar", callback_data=str(FIVE))
+        ],
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    query.edit_message_text(
+        text="JavaSciprt selecionado. Em qual dessas partes da linguagem está a duvida?", reply_markup=reply_markup
+    )
+    return SECOND
+
+
+
+# Escolhas do Java
+def return_java(update: Update, _: CallbackContext) -> int:
+    """Show new choice of buttons"""
+    query = update.callback_query
+    query.answer()
+    keyboard = [
+        [
+            InlineKeyboardButton("Funções", callback_data=str(FUNCAO_JAVA)),
+        ],
+        [
+            InlineKeyboardButton("Arrays", callback_data=str(ARRAYS_JAVA))
+        ],
+        [
+            InlineKeyboardButton("Operadores e Expressões", callback_data=str(OPER_EXP_JAVA))
+        ],
+        [
+            InlineKeyboardButton("Estruturas de Controle (IF/ELSE/FOR/WHILE/SWITCH)", callback_data=str(CONTROLE_JAVA))
+        ],
+        [
+            InlineKeyboardButton("Voltar", callback_data=str(FIVE))
+        ],
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    query.edit_message_text(
+        text="Java selecionado. Em qual dessas partes da linguagem está a duvida?", reply_markup=reply_markup
+    )
+    return THIRD
+
+
+# Escolhas do Python
+def return_python(update: Update, _: CallbackContext) -> int:
+    """Show new choice of buttons"""
+    query = update.callback_query
+    query.answer()
+    keyboard = [
+        [
+            InlineKeyboardButton("Funções", callback_data=str(FUNCAO_PYTHON)),
+        ],
+        [
+            InlineKeyboardButton("Arrays", callback_data=str(ARRAYS_PYTHON)),
+        ],
+        [
+            InlineKeyboardButton("Operadores e Expressões", callback_data=str(OPER_EXP_PYTHON))
+        ],
+        [
+            InlineKeyboardButton("Estruturas de Controle (IF/ELSE/FOR/WHILE/SWITCH)", callback_data=str(CONTROLE_PYTHON)),
+        ],
+        [
+            InlineKeyboardButton("Voltar", callback_data=str(FIVE))
+        ],
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    query.edit_message_text(
+        text="Python selecionado. Em qual dessas partes da linguagem está a duvida?", reply_markup=reply_markup
+    )
+    return FOURTH
 
 
 def end(update: Update, _: CallbackContext) -> int:
@@ -407,21 +539,33 @@ def main() -> None:
                 CallbackQueryHandler(est_controle_js, pattern='^' + str(CONTROLE_JS) + '$'),
                 CallbackQueryHandler(array_js, pattern='^' + str(ARRAYS_JS) + '$'),
                 CallbackQueryHandler(oper_exp_js, pattern='^' + str(OPER_EXP_JS) + '$'),
+                CallbackQueryHandler(return_linguagens, pattern='^' + str(FIVE) + '$'),
             ],
             THIRD: [
                 CallbackQueryHandler(func_java, pattern='^' + str(FUNCAO_JAVA) + '$'),                
                 CallbackQueryHandler(est_controle_java, pattern='^' + str(CONTROLE_JAVA) + '$'),
                 CallbackQueryHandler(array_java, pattern='^' + str(ARRAYS_JAVA) + '$'),
                 CallbackQueryHandler(oper_exp_java, pattern='^' + str(OPER_EXP_JAVA) + '$'),
+                CallbackQueryHandler(return_linguagens, pattern='^' + str(FIVE) + '$'),
             ],
             FOURTH: [
                 CallbackQueryHandler(func_python, pattern='^' + str(FUNCAO_PYTHON) + '$'),
                 CallbackQueryHandler(est_controle_python, pattern='^' + str(CONTROLE_PYTHON) + '$'),
                 CallbackQueryHandler(array_python, pattern='^' + str(ARRAYS_PYTHON) + '$'),
                 CallbackQueryHandler(oper_exp_python, pattern='^' + str(OPER_EXP_PYTHON) + '$'),
+                CallbackQueryHandler(return_linguagens, pattern='^' + str(FIVE) + '$'),
+            ],
+            FIFTH: [
+                CallbackQueryHandler(return_js, pattern='^' + str(VOLTA_JS) + '$'),
+            ],
+            SIXTH: [
+                CallbackQueryHandler(return_java, pattern='^' + str(VOLTA_JAVA) + '$'),
+            ],
+            SEVENTH: [
+                CallbackQueryHandler(return_python, pattern='^' + str(VOLTA_PYTHON) + '$'),
             ],
             END: [
-                CallbackQueryHandler(end, pattern='^' + str() + '$'),
+                CallbackQueryHandler(return_linguagens, pattern='^' + str(FIVE) + '$'),
             ],
         },
         fallbacks=[CommandHandler('linguagens', linguagens)],
