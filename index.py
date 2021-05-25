@@ -20,9 +20,8 @@ logger = logging.getLogger(__name__)
 # Stages
 FIRST, SECOND, THIRD, FOURTH, FIFTH, SIXTH, SEVENTH = range(7)
 # Callback data
-ONE, TWO, THREE, FOUR, FIVE, = range(5)
-# End
-END = range(1)
+ONE, TWO, THREE, FOUR, FIVE, UM, DOIS, TRES = range(8)
+#
 # Handlers das linguagens
 JS, FUNCAO_JS, CONTROLE_JS, ARRAYS_JS, OPER_EXP_JS, VOLTA_JS = range(6)
 PYTHON, FUNCAO_PYTHON, CONTROLE_PYTHON, ARRAYS_PYTHON, OPER_EXP_PYTHON, VOLTA_JAVA = range(6)
@@ -71,7 +70,7 @@ def javascript(update: Update, _: CallbackContext) -> int:
             InlineKeyboardButton("Estruturas de Controle (IF/ELSE/FOR/WHILE/SWITCH)", callback_data=str(CONTROLE_JS))
         ],
         [
-            InlineKeyboardButton("Voltar", callback_data=str(FIVE))
+            InlineKeyboardButton("Voltar", callback_data=str(UM))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -100,7 +99,7 @@ def java(update: Update, _: CallbackContext) -> int:
             InlineKeyboardButton("Estruturas de Controle (IF/ELSE/FOR/WHILE/SWITCH)", callback_data=str(CONTROLE_JAVA))
         ],
         [
-            InlineKeyboardButton("Voltar", callback_data=str(FIVE))
+            InlineKeyboardButton("Voltar", callback_data=str(DOIS))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -129,7 +128,7 @@ def python(update: Update, _: CallbackContext) -> int:
             InlineKeyboardButton("Estruturas de Controle (IF/ELSE/FOR/WHILE/SWITCH)", callback_data=str(CONTROLE_PYTHON)),
         ],
         [
-            InlineKeyboardButton("Voltar", callback_data=str(FIVE))
+            InlineKeyboardButton("Voltar", callback_data=str(TRES))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -437,7 +436,7 @@ def return_js(update: Update, _: CallbackContext) -> int:
             InlineKeyboardButton("Estruturas de Controle (IF/ELSE/FOR/WHILE/SWITCH)", callback_data=str(CONTROLE_JS))
         ],
         [
-            InlineKeyboardButton("Voltar", callback_data=str(FIVE))
+            InlineKeyboardButton("Voltar", callback_data=str(UM))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -467,7 +466,7 @@ def return_java(update: Update, _: CallbackContext) -> int:
             InlineKeyboardButton("Estruturas de Controle (IF/ELSE/FOR/WHILE/SWITCH)", callback_data=str(CONTROLE_JAVA))
         ],
         [
-            InlineKeyboardButton("Voltar", callback_data=str(FIVE))
+            InlineKeyboardButton("Voltar", callback_data=str(DOIS))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -496,7 +495,7 @@ def return_python(update: Update, _: CallbackContext) -> int:
             InlineKeyboardButton("Estruturas de Controle (IF/ELSE/FOR/WHILE/SWITCH)", callback_data=str(CONTROLE_PYTHON)),
         ],
         [
-            InlineKeyboardButton("Voltar", callback_data=str(FIVE))
+            InlineKeyboardButton("Voltar", callback_data=str(TRES))
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -535,25 +534,25 @@ def main() -> None:
                 CallbackQueryHandler(python, pattern='^' + str(THREE) + '$'),
             ],
             SECOND: [
+                CallbackQueryHandler(return_linguagens, pattern='^' + str(UM) + '$'),
                 CallbackQueryHandler(func_js, pattern='^' + str(FUNCAO_JS) + '$'),
-                CallbackQueryHandler(est_controle_js, pattern='^' + str(CONTROLE_JS) + '$'),
                 CallbackQueryHandler(array_js, pattern='^' + str(ARRAYS_JS) + '$'),
                 CallbackQueryHandler(oper_exp_js, pattern='^' + str(OPER_EXP_JS) + '$'),
-                CallbackQueryHandler(return_linguagens, pattern='^' + str(FIVE) + '$'),
+                CallbackQueryHandler(est_controle_js, pattern='^' + str(CONTROLE_JS) + '$'),
             ],
             THIRD: [
+                CallbackQueryHandler(return_linguagens, pattern='^' + str(DOIS) + '$'),
                 CallbackQueryHandler(func_java, pattern='^' + str(FUNCAO_JAVA) + '$'),                
-                CallbackQueryHandler(est_controle_java, pattern='^' + str(CONTROLE_JAVA) + '$'),
                 CallbackQueryHandler(array_java, pattern='^' + str(ARRAYS_JAVA) + '$'),
                 CallbackQueryHandler(oper_exp_java, pattern='^' + str(OPER_EXP_JAVA) + '$'),
-                CallbackQueryHandler(return_linguagens, pattern='^' + str(FIVE) + '$'),
+                CallbackQueryHandler(est_controle_java, pattern='^' + str(CONTROLE_JAVA) + '$'),
             ],
             FOURTH: [
+                CallbackQueryHandler(return_linguagens, pattern='^' + str(TRES) + '$'),
                 CallbackQueryHandler(func_python, pattern='^' + str(FUNCAO_PYTHON) + '$'),
-                CallbackQueryHandler(est_controle_python, pattern='^' + str(CONTROLE_PYTHON) + '$'),
                 CallbackQueryHandler(array_python, pattern='^' + str(ARRAYS_PYTHON) + '$'),
                 CallbackQueryHandler(oper_exp_python, pattern='^' + str(OPER_EXP_PYTHON) + '$'),
-                CallbackQueryHandler(return_linguagens, pattern='^' + str(FIVE) + '$'),
+                CallbackQueryHandler(est_controle_python, pattern='^' + str(CONTROLE_PYTHON) + '$'),
             ],
             FIFTH: [
                 CallbackQueryHandler(return_js, pattern='^' + str(VOLTA_JS) + '$'),
@@ -563,9 +562,6 @@ def main() -> None:
             ],
             SEVENTH: [
                 CallbackQueryHandler(return_python, pattern='^' + str(VOLTA_PYTHON) + '$'),
-            ],
-            END: [
-                CallbackQueryHandler(return_linguagens, pattern='^' + str(FIVE) + '$'),
             ],
         },
         fallbacks=[CommandHandler('linguagens', linguagens)],
