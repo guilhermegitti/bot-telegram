@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 FIRST, FOURTH, SEVENTH = range(3)
 # Handlers da linguagem
 PYTHON, FUNCAO_PYTHON, CLASS_PYTHON, CONTROLE_PYTHON, ARRAYS_PYTHON, OPER_EXP_PYTHON = range(6)
-# a
+# call_backs
 VOLTA_PYTHON, VOLTA_ARRAY, VOLTA_EST_CONTROLE, LISTA_PYTHON, DIC_PYTHON, TUPLA_PYTHON, IF_PYTHON, FOR_PYTHON = range(8)
 
 
@@ -96,8 +96,8 @@ def colecoes_python(update: Update, _: CallbackContext) -> int:
     keyboard = [
         [
             InlineKeyboardButton("Listas", callback_data=str(LISTA_PYTHON)),
-            InlineKeyboardButton("Dicionarios", callback_data=str(DIC_PYTHON)),
             InlineKeyboardButton("Tuplas", callback_data=str(TUPLA_PYTHON)),
+            InlineKeyboardButton("Dicionarios", callback_data=str(DIC_PYTHON)),
         ],
         [
             InlineKeyboardButton("DOC Python", url="https://api.telegram.org"),
@@ -233,8 +233,8 @@ def return_colecoes_python(update: Update, _: CallbackContext) -> int:
     keyboard = [
         [
             InlineKeyboardButton("Listas", callback_data=str(LISTA_PYTHON)),
-            InlineKeyboardButton("Dicionarios", callback_data=str(DIC_PYTHON)),
             InlineKeyboardButton("Tuplas", callback_data=str(TUPLA_PYTHON)),
+            InlineKeyboardButton("Dicionarios", callback_data=str(DIC_PYTHON)),
         ],
         [
             InlineKeyboardButton("DOC Python", url="https://api.telegram.org"),
