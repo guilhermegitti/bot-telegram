@@ -1,0 +1,13 @@
+{
+    "funcao": ["funcao", "metodo", "acao", "function", "def", "func", "metodos", "funcaos"],
+    "classe": ["classe", "objeto", "class", "clas", "classes"],
+    "lista": ["list", "lista", "lis"],
+    "dict": ["dicionario", "dict", "dicionarios"],
+    "tupla": ["tupla", "tuplas"],
+    "operador_comparacao": ["comparacao", "maior", "menor", "igual"],
+    "operador_logico": ["and", "or", "not"],
+    "operador_aritmetico": ["mais", "menos", "dividir", "+", "-", "/", "*", "multiplicar"],
+    "if_ense": ["if", "else", "se", "elif"],
+    "for_while": ["for", "while", "range"],
+    "try_except": ["try", "except", "error", "tratar"]
+}
