@@ -42,13 +42,13 @@ def return_python(update: Update, _: CallbackContext) -> int:
             InlineKeyboardButton("Classes", callback_data=str(CLASS_PYTHON))
         ],
         [
-            InlineKeyboardButton("Coleções (Lista/Tupla/Dicionario)", callback_data=str(ARRAYS_PYTHON)),
+            InlineKeyboardButton("Coleções (Lista/Tuplas/Dicionario)", callback_data=str(ARRAYS_PYTHON)),
         ],
         [
-            InlineKeyboardButton("Operadores Logicos e Expressões", callback_data=str(OPER_EXP_PYTHON))
+            InlineKeyboardButton("Operadores e Expressões", callback_data=str(OPER_EXP_PYTHON))
         ],
         [
-            InlineKeyboardButton("Estruturas de Controle (IF-Else/For/While/)", callback_data=str(CONTROLE_PYTHON)),
+            InlineKeyboardButton("Estruturas de Controle (IF-Else/For-While/)", callback_data=str(CONTROLE_PYTHON)),
         ],
         [
             InlineKeyboardButton("Tratamento de Exceções (Try-Except)", callback_data=str(TRY_PYTHON)),
@@ -73,7 +73,6 @@ def return_controle_python(update: Update, _: CallbackContext) -> int:
             InlineKeyboardButton("For - While", callback_data=str(FOR_PYTHON)),
         ],
         [
-            InlineKeyboardButton("DOC Python", url="https://docs.python.org/pt-br/3/tutorial/index.html"),
             InlineKeyboardButton("Voltar", callback_data=str(VOLTA_PYTHON))
         ],
     ]
@@ -100,7 +99,6 @@ def return_oper_python(update: Update, _: CallbackContext) -> int:
             InlineKeyboardButton("Operadores Aritméticos", callback_data=str(ARIT_PYTHON)),
         ],
         [
-            InlineKeyboardButton("DOC Python", url="https://docs.python.org/pt-br/3/tutorial/index.html"),
             InlineKeyboardButton("Voltar", callback_data=str(VOLTA_PYTHON))
         ],
     ]
@@ -120,7 +118,6 @@ def return_colecoes_python(update: Update, _: CallbackContext) -> int:
             InlineKeyboardButton("Dicionarios", callback_data=str(DIC_PYTHON)),
         ],
         [
-            InlineKeyboardButton("DOC Python", url="https://docs.python.org/pt-br/3/tutorial/index.html"),
             InlineKeyboardButton("Voltar", callback_data=str(VOLTA_PYTHON))
         ],
     ]
@@ -141,13 +138,13 @@ def python(update: Update, _: CallbackContext) -> int:
             InlineKeyboardButton("Classes", callback_data=str(CLASS_PYTHON))
         ],
         [
-            InlineKeyboardButton("Coleções (Lista/Tupla/Dicionario)", callback_data=str(ARRAYS_PYTHON)),
+            InlineKeyboardButton("Coleções (Lista/Tuplas/Dicionario)", callback_data=str(ARRAYS_PYTHON)),
         ],
         [
-            InlineKeyboardButton("Operadores Logicos e Expressões", callback_data=str(OPER_EXP_PYTHON))
+            InlineKeyboardButton("Operadores e Expressões", callback_data=str(OPER_EXP_PYTHON))
         ],
         [
-            InlineKeyboardButton("Estruturas de Controle (IF-Else/For/While/)", callback_data=str(CONTROLE_PYTHON)),
+            InlineKeyboardButton("Estruturas de Controle (IF-Else/For-While/)", callback_data=str(CONTROLE_PYTHON)),
         ],
         [
             InlineKeyboardButton("Tratamento de Exceções (Try-Except)", callback_data=str(TRY_PYTHON)),

@@ -102,7 +102,7 @@ def opr_comp_python(update: Update, _: CallbackContext) -> int:
     query.answer()
     keyboard = [
         [
-            InlineKeyboardButton("Referencia", url="https://algoritmosempython.com.br/cursos/programacao-python/fluxo-controle/"),
+            InlineKeyboardButton("Referencia", url="https://www.devmedia.com.br/operadores-no-python/40693"),
             InlineKeyboardButton("DOC Python", url="https://docs.python.org/pt-br/3/tutorial/index.html"),
             InlineKeyboardButton("Voltar", callback_data=str(VOLTA_OPER)),
         ],
@@ -134,7 +134,7 @@ def opr_identi_python(update: Update, _: CallbackContext) -> int:
     query.answer()
     keyboard = [
         [
-            InlineKeyboardButton("Referencia", url="https://algoritmosempython.com.br/cursos/programacao-python/fluxo-controle/"),
+            InlineKeyboardButton("Referencia", url="https://www.devmedia.com.br/operadores-no-python/40693"),
             InlineKeyboardButton("DOC Python", url="https://docs.python.org/pt-br/3/tutorial/index.html"),
             InlineKeyboardButton("Voltar", callback_data=str(VOLTA_OPER)),
         ],
@@ -150,7 +150,7 @@ def opr_arit_python(update: Update, _: CallbackContext) -> int:
     query.answer()
     keyboard = [
         [
-            InlineKeyboardButton("Referencia", url="https://algoritmosempython.com.br/cursos/programacao-python/fluxo-controle/"),
+            InlineKeyboardButton("Referencia", url="https://www.devmedia.com.br/operadores-no-python/40693"),
             InlineKeyboardButton("DOC Python", url="https://docs.python.org/pt-br/3/tutorial/index.html"),
             InlineKeyboardButton("Voltar", callback_data=str(VOLTA_OPER)),
         ],
@@ -210,4 +210,4 @@ def try_except_python(update: Update, _: CallbackContext) -> int:
 
 # Função de incio do bot
 def start(update: Update, _: CallbackContext) -> None:
-    update.message.reply_text("Seja bem vindo ao oPython Bot. Nosso compromisso é explicar para iniciantes, de forma fácil, alguns tópicos da liguagem Python. Digite /python aproveite o conteúdo!")
+    update.message.reply_text("Seja bem vindo ao PythonBot. Nosso compromisso é explicar para iniciantes, de forma fácil, alguns tópicos da liguagem Python. Digite /python aproveite o conteúdo!")
