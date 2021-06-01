@@ -4,19 +4,15 @@ from telegram.ext import CallbackContext
 import logging
 
 from constants import (
-    FIRST,
+    PYTHON,
     FOURTH,
     SEVENTH,
-    PYTHON,
     FUNCAO_PYTHON,
     CLASS_PYTHON,
     CONTROLE_PYTHON,
     ARRAYS_PYTHON,
     OPER_EXP_PYTHON,
     VOLTA_PYTHON,
-    VOLTA_ARRAY,
-    VOLTA_EST_CONTROLE,
-    VOLTA_OPER,
     LISTA_PYTHON,
     DIC_PYTHON,
     TUPLA_PYTHON,
@@ -35,6 +31,9 @@ def return_python(update: Update, _: CallbackContext) -> int:
     query = update.callback_query
     query.answer()
     keyboard = [
+        [
+            InlineKeyboardButton("Python", callback_data=str(PYTHON)),
+        ],
         [
             InlineKeyboardButton("Funções", callback_data=str(FUNCAO_PYTHON)),
         ],
@@ -134,6 +133,9 @@ def python(update: Update, _: CallbackContext) -> int:
     user = update.message.from_user
     logger.info("User %s started the conversation. Lastname is: %s", user.first_name, user.last_name)
     keyboard = [
+        [
+            InlineKeyboardButton("Python", callback_data=str(PYTHON)),
+        ],
         [
             InlineKeyboardButton("Funções", callback_data=str(FUNCAO_PYTHON)),
         ],

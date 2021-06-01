@@ -1,7 +1,7 @@
 {
-    "funcao": ["funcao", "metodo", "acao", "function", "def", "func", "metodos", "funcaos"],
+    "funcao": ["funcao", "metodo", "acao", "function", "def", "func", "metodos", "funcoes"],
     "classe": ["classe", "objeto", "class", "clas", "classes"],
-    "lista": ["list", "lista", "lis"],
+    "lista": ["list", "lista", "lis", "listas"],
     "dict": ["dicionario", "dict", "dicionarios"],
     "tupla": ["tupla", "tuplas"],
     "operador_comparacao": ["comparacao", "maior", "menor", "igual"],
@@ -9,5 +9,7 @@
     "operador_aritmetico": ["mais", "menos", "dividir", "+", "-", "/", "*", "multiplicar"],
     "if_ense": ["if", "else", "se", "elif"],
     "for_while": ["for", "while", "range"],
-    "try_except": ["try", "except", "error", "tratar"]
+    "try_except": ["try", "except", "error", "tratar"],
+    "python_caracteristicas": ["python", "py"],
+    "bem_vindo": ["ola", "oi", "oii", "ooii", "oiii", "dia", "tarde", "noite"]
 }

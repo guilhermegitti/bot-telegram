@@ -14,8 +14,8 @@ from telegram.ext import (
 
 import botoes
 import show_answer
+from resposta import Resposta
 from constants import (
-    FIRST,
     FOURTH,
     SEVENTH,
     PYTHON,
@@ -37,7 +37,8 @@ from constants import (
     COMP_PYTHON,
     LOG_PYTHON,
     IDENT_PYTHON,
-    ARIT_PYTHON
+    ARIT_PYTHON,
+    PYTHON
 )
 
 # Enable logging
@@ -49,7 +50,8 @@ logging.basicConfig(
 def echo(update: Update, _: CallbackContext) -> None:
     """Echo the user message."""
     print(update.message.text)
-    update.message.reply_text(update.message.text)
+    resposta_obj = Resposta(update.message.text)
+    update.message.reply_text(resposta_obj.get_answer())
 
 
 def main() -> None:
@@ -67,6 +69,7 @@ def main() -> None:
         entry_points=[CommandHandler('python', botoes.python)],
         states={
             FOURTH: [
+                CallbackQueryHandler(show_answer.python_caracteristicas, pattern='^' + str(PYTHON) + '$'),
                 CallbackQueryHandler(show_answer.func_python, pattern='^' + str(FUNCAO_PYTHON) + '$'),
                 CallbackQueryHandler(botoes.colecoes_python, pattern='^' + str(ARRAYS_PYTHON) + '$'),
                 CallbackQueryHandler(show_answer.classe_python, pattern='^' + str(CLASS_PYTHON) + '$'),

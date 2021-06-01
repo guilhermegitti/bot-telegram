@@ -160,6 +160,19 @@ def opr_arit_python(update: Update, _: CallbackContext) -> int:
     return SEVENTH
 
 
+def python_caracteristicas(update: Update, _: CallbackContext) -> int:
+    """Prompt same text & keyboard as `start` does but not as new message"""
+    query = update.callback_query
+    query.answer()
+    keyboard = [
+        [
+            InlineKeyboardButton("Voltar", callback_data=str(VOLTA_PYTHON)),
+        ],
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    query.edit_message_text(text=respostas['python_caracteristicas'], reply_markup=reply_markup)
+    return SEVENTH
+
 def if_else_python(update: Update, _: CallbackContext) -> int:
     """Prompt same text & keyboard as `start` does but not as new message"""
     query = update.callback_query
