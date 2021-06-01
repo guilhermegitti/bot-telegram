@@ -223,4 +223,4 @@ def try_except_python(update: Update, _: CallbackContext) -> int:
 
 # Função de incio do bot
 def start(update: Update, _: CallbackContext) -> None:
-    update.message.reply_text("Seja bem vindo ao PythonBot. Nosso compromisso é explicar para iniciantes, de forma fácil, alguns tópicos da liguagem Python. Digite /python aproveite o conteúdo!")
+    update.message.reply_text("Olá, eu sou o chatbot desenvolvido pelos estudantes da USJT, como vai?\nPosso tirar várias dúvidas sobre python, digita ai as palavras chaves sobre o que você quer aprender ou digite /python para ver as opções :)")
