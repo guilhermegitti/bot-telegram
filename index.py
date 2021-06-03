@@ -47,77 +47,79 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
 )
 
-class ChatBot():
+#class ChatBot():
 
-    def __init__(self):
-        modelo = open('bag_of_words_modelo', 'rb')
-        self.model = pickle.load(modelo)
-        modelo.close()
+# def __init__(self):
+#     modelo = open('bag_of_words_modelo', 'rb')
+#     self.model = pickle.load(modelo)
+#     modelo.close()
 
-    def echo(self, update: Update, _: CallbackContext) -> None:
-        """Echo the user message."""
-        print(update.message.text)
-        resposta_obj = Resposta(update.message.text)
-        update.message.reply_text(resposta_obj.predict_bag_of_words(self.model))
+def echo(update: Update, _: CallbackContext) -> None:
+    """Echo the user message."""
+    modelo = open('bag_of_words_modelo', 'rb')
+    model = pickle.load(modelo)
+    modelo.close()
+    resposta_obj = Resposta(update.message.text)
+    update.message.reply_text(resposta_obj.predict_bag_of_words(model))
 
 
-    def main(self) -> None:
-        # Carrega o dotenv
-        dotenv.load_dotenv(dotenv.find_dotenv())
+def main() -> None:
+    # Carrega o dotenv
+    dotenv.load_dotenv(dotenv.find_dotenv())
 
-        # Create the Updater and pass it your bot's token.
-        updater = Updater(os.getenv("TOKEN"))
+    # Create the Updater and pass it your bot's token.
+    updater = Updater(os.getenv("TOKEN"))
 
-        # Get the dispatcher to register handlers
-        dispatcher = updater.dispatcher
+    # Get the dispatcher to register handlers
+    dispatcher = updater.dispatcher
 
-        # Setup conversation handler with the states
-        conv_handler = ConversationHandler(
-            entry_points=[CommandHandler('python', botoes.python)],
-            states={
-                FOURTH: [
-                    CallbackQueryHandler(show_answer.python_caracteristicas, pattern='^' + str(PYTHON) + '$'),
-                    CallbackQueryHandler(show_answer.func_python, pattern='^' + str(FUNCAO_PYTHON) + '$'),
-                    CallbackQueryHandler(botoes.colecoes_python, pattern='^' + str(ARRAYS_PYTHON) + '$'),
-                    CallbackQueryHandler(show_answer.classe_python, pattern='^' + str(CLASS_PYTHON) + '$'),
-                    CallbackQueryHandler(botoes.oper_exp_python, pattern='^' + str(OPER_EXP_PYTHON) + '$'),
-                    CallbackQueryHandler(botoes.est_controle_python, pattern='^' + str(CONTROLE_PYTHON) + '$'),
-                    CallbackQueryHandler(show_answer.try_except_python, pattern='^' + str(TRY_PYTHON) + '$'),
-                ],
-                SEVENTH: [
-                    CallbackQueryHandler(botoes.return_python, pattern='^' + str(VOLTA_PYTHON) + '$'),
-                    CallbackQueryHandler(botoes.return_colecoes_python, pattern='^' + str(VOLTA_ARRAY) + '$'),
-                    CallbackQueryHandler(botoes.return_oper_python, pattern='^' + str(VOLTA_OPER) + '$'),
-                    CallbackQueryHandler(botoes.return_controle_python, pattern='^' + str(VOLTA_EST_CONTROLE) + '$'),
-                    CallbackQueryHandler(show_answer.lista_python, pattern='^' + str(LISTA_PYTHON) + '$'),
-                    CallbackQueryHandler(show_answer.dic_python, pattern='^' + str(DIC_PYTHON) + '$'),
-                    CallbackQueryHandler(show_answer.tupla_python, pattern='^' + str(TUPLA_PYTHON) + '$'),
-                    CallbackQueryHandler(show_answer.opr_comp_python, pattern='^' + str(COMP_PYTHON) + '$'),
-                    CallbackQueryHandler(show_answer.opr_log_python, pattern='^' + str(LOG_PYTHON) + '$'),
-                    CallbackQueryHandler(show_answer.opr_identi_python, pattern='^' + str(IDENT_PYTHON) + '$'),
-                    CallbackQueryHandler(show_answer.opr_arit_python, pattern='^' + str(ARIT_PYTHON) + '$'),
-                    CallbackQueryHandler(show_answer.if_else_python, pattern='^' + str(IF_PYTHON) + '$'),
-                    CallbackQueryHandler(show_answer.for_while_python, pattern='^' + str(FOR_PYTHON) + '$'),
-                ],
-            },
-            fallbacks=[CommandHandler('python', botoes.python)],
-        )
+    # Setup conversation handler with the states
+    conv_handler = ConversationHandler(
+        entry_points=[CommandHandler('python', botoes.python)],
+        states={
+            FOURTH: [
+                CallbackQueryHandler(show_answer.python_caracteristicas, pattern='^' + str(PYTHON) + '$'),
+                CallbackQueryHandler(show_answer.func_python, pattern='^' + str(FUNCAO_PYTHON) + '$'),
+                CallbackQueryHandler(botoes.colecoes_python, pattern='^' + str(ARRAYS_PYTHON) + '$'),
+                CallbackQueryHandler(show_answer.classe_python, pattern='^' + str(CLASS_PYTHON) + '$'),
+                CallbackQueryHandler(botoes.oper_exp_python, pattern='^' + str(OPER_EXP_PYTHON) + '$'),
+                CallbackQueryHandler(botoes.est_controle_python, pattern='^' + str(CONTROLE_PYTHON) + '$'),
+                CallbackQueryHandler(show_answer.try_except_python, pattern='^' + str(TRY_PYTHON) + '$'),
+            ],
+            SEVENTH: [
+                CallbackQueryHandler(botoes.return_python, pattern='^' + str(VOLTA_PYTHON) + '$'),
+                CallbackQueryHandler(botoes.return_colecoes_python, pattern='^' + str(VOLTA_ARRAY) + '$'),
+                CallbackQueryHandler(botoes.return_oper_python, pattern='^' + str(VOLTA_OPER) + '$'),
+                CallbackQueryHandler(botoes.return_controle_python, pattern='^' + str(VOLTA_EST_CONTROLE) + '$'),
+                CallbackQueryHandler(show_answer.lista_python, pattern='^' + str(LISTA_PYTHON) + '$'),
+                CallbackQueryHandler(show_answer.dic_python, pattern='^' + str(DIC_PYTHON) + '$'),
+                CallbackQueryHandler(show_answer.tupla_python, pattern='^' + str(TUPLA_PYTHON) + '$'),
+                CallbackQueryHandler(show_answer.opr_comp_python, pattern='^' + str(COMP_PYTHON) + '$'),
+                CallbackQueryHandler(show_answer.opr_log_python, pattern='^' + str(LOG_PYTHON) + '$'),
+                CallbackQueryHandler(show_answer.opr_identi_python, pattern='^' + str(IDENT_PYTHON) + '$'),
+                CallbackQueryHandler(show_answer.opr_arit_python, pattern='^' + str(ARIT_PYTHON) + '$'),
+                CallbackQueryHandler(show_answer.if_else_python, pattern='^' + str(IF_PYTHON) + '$'),
+                CallbackQueryHandler(show_answer.for_while_python, pattern='^' + str(FOR_PYTHON) + '$'),
+            ],
+        },
+        fallbacks=[CommandHandler('python', botoes.python)],
+    )
 
-        updater.dispatcher.add_handler(CommandHandler('start', show_answer.start))
+    updater.dispatcher.add_handler(CommandHandler('start', show_answer.start))
 
-        # Add ConversationHandler to dispatcher that will be used for handling updates
-        dispatcher.add_handler(conv_handler)
+    # Add ConversationHandler to dispatcher that will be used for handling updates
+    dispatcher.add_handler(conv_handler)
 
-        dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, self.echo))
+    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
 
-        # Start the Bot
-        updater.start_polling()
+    # Start the Bot
+    updater.start_polling()
 
-        # Run the bot until you press Ctrl-C or the process receives SIGINT,
-        # SIGTERM or SIGABRT. This should be used most of the time, since
-        # start_polling() is non-blocking and will stop the bot gracefully.
-        updater.idle()
+    # Run the bot until you press Ctrl-C or the process receives SIGINT,
+    # SIGTERM or SIGABRT. This should be used most of the time, since
+    # start_polling() is non-blocking and will stop the bot gracefully.
+    updater.idle()
 
 if __name__ == '__main__':
-    ChatBot().main()
+    main()
     
