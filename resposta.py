@@ -2,8 +2,8 @@ import unicodedata
 import re
 import json
 import pickle
-import spacy
 import nltk
+from nltk.tokenize import word_tokenize
 
 from constants import COLUNAS
 
@@ -20,8 +20,6 @@ class Resposta():
             self.respostas = json.load(json_file, )
 
         self.colunas = COLUNAS
-
-        self.nlp = spacy.load("pt_core_news_sm")
 
     def get_answer(self):
         self._trata_user_message()
@@ -61,11 +59,11 @@ class Resposta():
 
         self.user_message = self.user_message.lower()
 
-        self.user_message = self.nlp(self.user_message)
+        self.user_message = [item for item in word_tokenize(self.user_message)]
 
         mensagem_cliente_filtrada = []
         for i in self.user_message:
-            mensagem_cliente_filtrada.append(self.remover_acentos(i.text))
+            mensagem_cliente_filtrada.append(self.remover_acentos(i))
 
         try:
             while True:
