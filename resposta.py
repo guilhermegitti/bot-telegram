@@ -44,6 +44,8 @@ class Resposta():
             aux += ' * '
         if '/' in palavra:
             aux += ' / '
+        if '%' in palavra:
+            aux += ' % '
 
         palavra.replace(',', ' ')
         # Unicode normalize transforma um caracter em seu equivalente em latin.
@@ -57,23 +59,21 @@ class Resposta():
 
     def predict_bag_of_words(self, model):
 
+        self.user_message = self.remover_acentos(self.user_message)
+
         self.user_message = self.user_message.lower()
 
         self.user_message = [item for item in word_tokenize(self.user_message)]
 
-        mensagem_cliente_filtrada = []
-        for i in self.user_message:
-            mensagem_cliente_filtrada.append(self.remover_acentos(i))
-
         try:
             while True:
-                mensagem_cliente_filtrada.remove('')
+                self.user_message.remove('')
         except ValueError:
             pass
 
         stemmer = nltk.stem.RSLPStemmer()
         mensagem_cliente_com_funcao_stemmer = []
-        for i in mensagem_cliente_filtrada:
+        for i in self.user_message:
             mensagem_cliente_com_funcao_stemmer.append(stemmer.stem(i))
         mensagem_cliente_com_funcao_stemmer
 
