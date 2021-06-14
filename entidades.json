@@ -11,5 +11,5 @@
     "for_while": ["for", "while", "range"],
     "try_except": ["try", "except", "error", "tratar"],
     "python_caracteristicas": ["python", "py"],
-    "bem_vindo": ["ola", "oi", "oii", "ooii", "oiii", "dia", "tarde", "noite"]
+    "bem_vindo": ["ola", "oi ", "oii", "ooii", "oiii", "dia", "tarde", "noite"]
 }
